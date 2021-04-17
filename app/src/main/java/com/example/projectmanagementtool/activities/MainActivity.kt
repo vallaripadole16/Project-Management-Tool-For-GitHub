@@ -1,9 +1,13 @@
-package com.example.projectmanagementtool
+package com.example.projectmanagementtool.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
+import com.example.projectmanagementtool.R
+import com.example.projectmanagementtool.firebase.FirestoreClass
+import com.example.projectmanagementtool.models.User
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -15,13 +19,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth : FirebaseAuth
-    private val RC_SIGN_IN = 301
+    private val RC_SIGN_IN = 30
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         auth = FirebaseAuth.getInstance()
         if(auth.currentUser != null){
-            startActivity(Intent(this,HomeActivity::class.java))
+            startActivity(Intent(this,
+                HomeActivity::class.java))
         }
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -67,15 +72,22 @@ class MainActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d("debug", "signInWithCredential:success")
-                        val user = auth.currentUser
-                        startActivity(Intent(this,HomeActivity::class.java))
+                        val firebaseUser = task.result!!.user
+                        val user =  User(firebaseUser!!.uid,firebaseUser.displayName!!,
+                            firebaseUser.email!!, firebaseUser.photoUrl.toString())
+                        Log.d("debug",user.toString())
+                            FirestoreClass().registerUser(this,user)
+                    }else{
+                        Log.i("debug","sign in failed")
+                    }
                         //TODO
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w("debug", "signInWithCredential:failure", task.exception)
-
-                        // TODO
                     }
                 }
+
+    fun userRegisteredSuccess(){
+        Toast.makeText(this,"user registered Successful", Toast.LENGTH_LONG).show()
+        startActivity(Intent(this,
+            HomeActivity::class.java))
+        finish()
     }
 }
