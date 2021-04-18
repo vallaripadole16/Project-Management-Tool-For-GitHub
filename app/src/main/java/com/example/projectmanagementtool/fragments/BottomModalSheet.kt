@@ -29,6 +29,7 @@ class BottomModalSheet : BottomSheetDialogFragment() {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_bottom_modal_sheet, container, false)
         mView.tvJoinModalSheet.setOnClickListener {
+            mUserID = (activity as HomeActivity).getUserID()
             val joinProjectIntent = Intent(activity,JoinProjectActivity::class.java)
             joinProjectIntent.putExtra(Constants.ID,mUserID)
             startActivityForResult(joinProjectIntent,HomeFragment.JOIN_PROJECT_REQUEST_CODE)
