@@ -5,17 +5,19 @@ import android.os.Parcelable
 
 class Project(
     var joinId: String = "",
-    var classId: String = "",
+    var projectId: String = "",
     val name: String = "",
+    val description:String ="",
     val image: String = "",
     val createdBy: String = "",
     val tech: String = "",
-    val githubRepo: String = "",
+    val githubRepoUrl: String = "",
     val createdAt: String = "",
     val members: ArrayList<String> = ArrayList(),
     var logList :ArrayList<String> = ArrayList()
 ): Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
@@ -30,13 +32,14 @@ class Project(
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) = with(parcel) {
-        parcel.writeString(classId)
         parcel.writeString(joinId)
+        parcel.writeString(projectId)
         parcel.writeString(name)
+        parcel.writeString(description)
         parcel.writeString(image)
         parcel.writeString(createdBy)
         parcel.writeString(tech)
-        parcel.writeString(githubRepo)
+        parcel.writeString(githubRepoUrl)
         parcel.writeString(createdAt)
         parcel.writeStringList(members)
         parcel.writeStringList(logList)

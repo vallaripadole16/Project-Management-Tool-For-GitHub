@@ -1,5 +1,6 @@
 package com.example.projectmanagementtool.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +20,9 @@ import kotlinx.android.synthetic.main.user_image.*
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var mUser:User
+    companion object{
+        const val MY_PROFILE_REQUEST_CODE = 103
+    }
 
     private lateinit var mUserID: String
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,6 +60,13 @@ class HomeActivity : AppCompatActivity() {
         supportActionBar!!.title = "Git Camp"
     }
 
+    fun getUserID(): String {
+        if(this::mUserID.isInitialized){
+            return mUserID
+        }
+        return ""
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
         menuInflater.inflate(R.menu.menu, menu)
@@ -75,13 +86,10 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menu_user_item) {
-//            startActivityForResult(
-//                Intent(this, MyProfileActivity::class.java),
-//                MY_PROFILE_REQUEST_CODE
-//            )
-        } else if (item.itemId == R.id.menu_exit) {
-            Log.i("debug", "exit button is clicked")
-            FirebaseAuth.getInstance().signOut()
+            startActivityForResult(
+                Intent(this, MyProfileActivity::class.java),
+                MY_PROFILE_REQUEST_CODE
+            )
         }
         return super.onOptionsItemSelected(item)
     }

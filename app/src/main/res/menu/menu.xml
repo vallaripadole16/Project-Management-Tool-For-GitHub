@@ -7,8 +7,4 @@
         app:actionLayout="@layout/user_image"
         app:showAsAction="always"
         />
-    <item
-        android:id="@+id/menu_exit"
-        android:title="Exit"
-        />
 </menu>
