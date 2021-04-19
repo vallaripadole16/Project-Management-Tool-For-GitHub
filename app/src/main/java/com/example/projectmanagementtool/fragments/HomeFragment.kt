@@ -65,7 +65,7 @@ class HomeFragment : Fragment() {
             if (mProjectList.isNotEmpty()) {
                 view?.let {view ->
                     mView.rvProjectList.visibility = View.VISIBLE
-                    mView.rvProjectList.layoutManager = LinearLayoutManager(activity)
+                    mView.rvProjectList.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
                     mView.rvProjectList.setHasFixedSize(true)
                     val adapter = ProjectItemAdapter(activity as HomeActivity, mProjectList)
                     view.rvProjectList.adapter = adapter

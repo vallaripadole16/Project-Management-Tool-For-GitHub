@@ -13,7 +13,6 @@ import com.example.projectmanagementtool.R
 import com.example.projectmanagementtool.data.viewmodels.MainViewModel
 import com.example.projectmanagementtool.models.User
 import kotlinx.android.synthetic.main.activity_my_profile.*
-import kotlinx.android.synthetic.main.user_image.*
 
 class MyProfileActivity : AppCompatActivity() {
     private lateinit var mUser:User

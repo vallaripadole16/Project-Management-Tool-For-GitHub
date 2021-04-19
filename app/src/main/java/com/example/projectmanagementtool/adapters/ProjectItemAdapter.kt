@@ -28,15 +28,11 @@ open class ProjectItemAdapter(private val context: Context,
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val model = projectList[position]
         if(holder is MyViewHolder){
+            holder.itemView.cvProject.setBackgroundResource(R.drawable.card_gradient_background)
             holder.itemView.tvProjectName.text = model.name
             holder.itemView.tvProjectCreateDate.text = "created: ${model.createdAt}"
-            holder.itemView.tvProjectGithubUrl.apply {
-                isClickable = true
-                movementMethod = LinkMovementMethod.getInstance()
-                text = Html.fromHtml("<a href='${model.githubRepoUrl}'> ${model.githubRepoUrl} </a>")
-            }
-            holder.itemView.tvProjectJoinId.text = model.joinId
-            holder.itemView.tvProjectMemberCount.text = model.members.size.toString()
+
+            holder.itemView.tvProjectDescription.text = model.description
 
 
             holder.itemView.setOnClickListener {
