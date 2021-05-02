@@ -5,6 +5,7 @@ object Constants {
     const val USER_PREFERENCE_NAME = "user_preference"
     const val CURRENT_USER = "current_user"
     const val JOIN_ID = "joinId"
+    const val LOG_LIST = "logList"
     const val LECTURE_LIST = "lectureList"
     const val CLASS_ROOM = "classroom"
     const val END_TIME = "endTime"
@@ -20,6 +21,8 @@ object Constants {
     const val CREATED_AT = "createdAt"
     const val MEMBERS = "members"
     const val CLASSROOMS = "classrooms"
+
+    const val USER = "user"
 
     const val PROJECTS = "projects"
     const val USERS: String = "users"

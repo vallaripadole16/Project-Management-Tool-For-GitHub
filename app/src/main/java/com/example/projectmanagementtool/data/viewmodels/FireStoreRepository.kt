@@ -1,5 +1,6 @@
 package com.example.projectmanagementtool.data.viewmodels
 
+import com.example.projectmanagementtool.models.Log
 import com.example.projectmanagementtool.models.Project
 import com.example.projectmanagementtool.utils.Constants
 import com.google.android.gms.tasks.Task
@@ -18,6 +19,8 @@ class FireStoreRepository {
         return FirebaseAuth.getInstance().currentUser!!.uid
     }
 
+
+
     fun loadUserData(): Task<DocumentSnapshot> {
         return mFireStore.collection(Constants.USERS)
                 .document(getCurrentUserID())
@@ -34,6 +37,54 @@ class FireStoreRepository {
         return mFireStore.collection(Constants.PROJECTS)
             .whereArrayContains(Constants.MEMBERS, getCurrentUserID())
             .get()
+    }
+
+
+    fun getProjectDetails(documentId: String): Task<DocumentSnapshot> {
+        return mFireStore.collection(Constants.PROJECTS)
+            .document(documentId)
+            .get()
+
+    }
+
+    fun addLogToProject(
+        joinId: String,
+        logList: ArrayList<Log>
+    ):String {
+        var res =""
+        mFireStore.collection(Constants.PROJECTS)
+            .whereEqualTo(Constants.JOIN_ID, joinId)
+            .get()
+            .addOnSuccessListener { snapshot ->
+                if (!snapshot.isEmpty) {
+                    for (i in snapshot.documents) {
+                        res = addLogListToProject( i.id, logList)
+                        break
+                    }
+                }
+            }
+            .addOnFailureListener {
+            }
+        return res
+    }
+
+
+   private fun addLogListToProject(
+        documentId: String,
+        logList: ArrayList<Log>
+    ): String {
+        var res =""
+        val hashMap = HashMap<String, Any>()
+        hashMap[Constants.LOG_LIST] = logList
+        mFireStore.collection(Constants.PROJECTS)
+            .document(documentId)
+            .update(hashMap)
+            .addOnSuccessListener {
+                res = documentId
+            }
+            .addOnFailureListener {
+            }
+        return res
     }
 
 }

@@ -19,15 +19,18 @@ import com.example.projectmanagementtool.adapters.ProjectItemAdapter
 import com.example.projectmanagementtool.data.viewmodels.MainViewModel
 import com.example.projectmanagementtool.firebase.FirestoreClass
 import com.example.projectmanagementtool.models.Project
+import com.example.projectmanagementtool.models.User
 import com.example.projectmanagementtool.utils.Constants
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 
 class HomeFragment : Fragment() {
-    private lateinit var mView:View
-    private lateinit var mProjectList:List<Project>
-    private lateinit var mUserID:String
+    private lateinit var mView: View
+    private lateinit var mProjectList: List<Project>
+    private lateinit var mUserID: String
+    lateinit var mUser: User
+
     companion object {
         const val MY_PROFILE_REQUEST_CODE = 103
         const val CREATE_PROJECT_REQUEST_CODE = 104
@@ -45,7 +48,10 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_bottomModalSheet)
         }
         val mainViewModel =
-            ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(activity!!.application)).get(
+            ViewModelProvider(
+                this,
+                ViewModelProvider.AndroidViewModelFactory(activity!!.application)
+            ).get(
                 MainViewModel::class.java
             )
         mainViewModel.projects.observe(this, Observer { classrooms ->
@@ -54,6 +60,7 @@ class HomeFragment : Fragment() {
 
         })
         mainViewModel.currentUser().observe(this, Observer { user ->
+            mUser = user
             mUserID = user.id
         })
 
@@ -63,9 +70,10 @@ class HomeFragment : Fragment() {
     fun populateProjectListToUI() {
         if (this::mProjectList.isInitialized) {
             if (mProjectList.isNotEmpty()) {
-                view?.let {view ->
+                view?.let { view ->
                     mView.rvProjectList.visibility = View.VISIBLE
-                    mView.rvProjectList.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
+                    mView.rvProjectList.layoutManager =
+                        LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
                     mView.rvProjectList.setHasFixedSize(true)
                     val adapter = ProjectItemAdapter(activity as HomeActivity, mProjectList)
                     view.rvProjectList.adapter = adapter
@@ -76,7 +84,7 @@ class HomeFragment : Fragment() {
                                 ProjectActivity::class.java
                             )
                             intent.putExtra(Constants.DOCUMENT_ID, model.projectId)
-                            intent.putExtra(Constants.ID, mUserID)
+                            intent.putExtra(Constants.USER, mUser)
                             startActivity(intent)
                         }
 
@@ -96,7 +104,7 @@ class HomeFragment : Fragment() {
         if (resultCode == Activity.RESULT_OK && requestCode == MY_PROFILE_REQUEST_CODE) {
 
         } else if (resultCode == Activity.RESULT_OK && requestCode == CREATE_PROJECT_REQUEST_CODE) {
-            Log.d("debug","executed")
+            Log.d("debug", "executed")
             FirestoreClass().getClassroomList(activity as HomeFragment)
         } else if (resultCode == Activity.RESULT_OK && requestCode == JOIN_PROJECT_REQUEST_CODE) {
             FirestoreClass().getClassroomList(activity as HomeFragment)

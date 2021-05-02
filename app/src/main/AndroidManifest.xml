@@ -10,7 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectManagementTool">
         <activity android:name=".activities.JoinProjectActivity"></activity>
-        <activity android:name=".activities.ProjectActivity" />
+        <activity android:name=".activities.ProjectActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"/>
         <activity android:name=".activities.CreateProjectActivity" />
         <activity android:name=".activities.MyProfileActivity" />
         <activity
