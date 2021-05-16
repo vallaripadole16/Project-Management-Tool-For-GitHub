@@ -27,7 +27,6 @@ class GalleryActivity:AppCompatActivity() {
 
         firebaseStore = FirebaseStorage.getInstance()
         storageReference = FirebaseStorage.getInstance().reference
-
         btnChooseImage.setOnClickListener { launchGallery() }
         btnUploadImage.setOnClickListener { uploadImage() }
 
