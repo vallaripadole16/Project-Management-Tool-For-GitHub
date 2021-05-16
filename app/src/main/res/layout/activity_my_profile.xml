@@ -5,14 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/profile"
     tools:context=".activities.MyProfileActivity">
 
     <ImageView
+        android:id="@+id/ProfileCircle"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="132dp"
+        android:src="@drawable/circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
         android:id="@+id/ivProfileUserImage"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_margin="20dp"
-        android:layout_gravity="center_horizontal"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:layout_margin="140dp"
+        android:layout_marginTop="120dp"
         android:src="@drawable/user_placeholder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -21,54 +35,58 @@
 
     <TextView
         android:id="@+id/tvMyProfileName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="My Name"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:gravity="center"
         android:padding="16dp"
+        android:text="My Name"
         android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/ivProfileUserImage"
+        android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivProfileUserImage" />
 
     <TextView
         android:id="@+id/tvMyProfileEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="My Email"
-        android:gravity="center"
-        android:padding="16dp"
+        android:gravity="clip_horizontal"
+        android:padding="20dp"
+        android:text="My E-mail"
         android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/tvMyProfileName"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMyProfileName" />
 
     <TextView
         android:id="@+id/tvMyProfileGithubID"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="clip_horizontal"
+        android:padding="20dp"
         android:text="GitHubID"
-        android:gravity="center"
-        android:padding="16dp"
+        android:textSize="20dp"
         android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/tvMyProfileEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMyProfileEmail" />
 
     <Button
         android:id="@+id/btnProfileExit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/custom_button"
+        android:gravity="center"
         android:text="Exit"
-        android:layout_margin="20dp"
+        android:textColor="@color/white"
         android:textSize="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tvMyProfileGithubID"
-        android:textColor="@color/white" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMyProfileGithubID" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
