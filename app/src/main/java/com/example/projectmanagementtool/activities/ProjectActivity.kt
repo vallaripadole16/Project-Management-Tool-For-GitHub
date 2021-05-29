@@ -3,13 +3,11 @@ package com.example.projectmanagementtool.activities
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.view.Window
-import android.widget.ArrayAdapter
-import android.widget.RadioButton
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,7 +30,8 @@ class ProjectActivity : AppCompatActivity() {
     lateinit var mComment: String
     lateinit var mCommand: String
     lateinit var mDialog: Dialog
-    lateinit var mUser :User
+    lateinit var mUser: User
+    private var mProjectProgress: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_project)
@@ -60,22 +59,65 @@ class ProjectActivity : AppCompatActivity() {
                 mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
                 mDialog.setContentView(R.layout.create_log_dialog)
                 mDialog.show()
+                Log.d("debug",mDialog.projectProgressBar.toString())
+
                 mDialog.btnMakeChanges.setOnClickListener {
-                    mComment = mDialog.etLogDescriptionCreateLog.text.toString()
-                    val currentTime = UtilityFunctions().getCurrentTime()
-                    if(!::mCommand.isInitialized){
-                        mCommand = "None"
+                    if (validateEditText(mDialog.etLogDescriptionCreateLog)) {
+                        mComment = mDialog.etLogDescriptionCreateLog.text.toString()
+                        val currentTime = UtilityFunctions().getCurrentTime()
+                        if (!::mCommand.isInitialized) {
+                            mCommand = "None"
+                        }
+                        val log = com.example.projectmanagementtool.models.Log(
+                            name = mCommand, description = mComment,
+                            createdBy = mUser.name, createdAt = currentTime, image = mUser.image,
+                            projectProgress = mProjectProgress
+                        )
+                        projectViewModel.addLogToProject(mProject, log)
+                        Toast.makeText(this, "Make some changes", Toast.LENGTH_SHORT).show()
+                        mDialog.dismiss()
+                        projectViewModel.projectDetails(mProjectDocumentId)
+                    }else{
+                        Toast.makeText(this, "Please enter comment", Toast.LENGTH_SHORT).show()
                     }
-                    val log = com.example.projectmanagementtool.models.Log(name = mCommand,description = mComment,
-                    createdBy = mUser.name,createdAt = currentTime,image = mUser.image)
-                    projectViewModel.addLogToProject(mProject,log)
-                    Toast.makeText(this, "Make some changes", Toast.LENGTH_SHORT).show()
-                    mDialog.dismiss()
-                    projectViewModel.projectDetails(mProjectDocumentId)
+
                 }
+
+
+                mDialog.projectProgressBar?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+                    override fun onProgressChanged(
+                        seekBar: SeekBar?,
+                        progress: Int,
+                        fromUser: Boolean
+                    ) {
+                        Log.d("debug",progress.toString())
+                        mProjectProgress = progress
+                        mDialog.tvProjectProgress.text = progress.toString()
+                    }
+
+                    override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                        if (seekBar != null) {
+                            mProjectProgress = seekBar.progress
+                        }
+                    }
+
+                    override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                        if (seekBar != null) {
+                            Log.d("debug",seekBar.progress.toString())
+                        }
+                    }
+
+                })
             }
         }
 
+    }
+
+    private fun validateEditText(etLogDescriptionCreateLog: EditText): Boolean {
+        if (TextUtils.isEmpty(etLogDescriptionCreateLog.text)) {
+            return false
+        }
+        return true
     }
 
     private fun setUpRecyclerView() {
@@ -95,9 +137,9 @@ class ProjectActivity : AppCompatActivity() {
         })
     }
 
-    private fun subscribeToObservers(){
+    private fun subscribeToObservers() {
         projectViewModel.mProject.observe(this, Observer { project ->
-            Log.d("debug",project.logList.toString())
+            Log.d("debug", project.logList.toString())
             fillDetails()
             mProject = project
             mAdapter.setData(project.logList)
@@ -136,8 +178,8 @@ class ProjectActivity : AppCompatActivity() {
     private fun fillDetails() {
         if (::mProject.isInitialized) {
             projectNameProjectActivity.text = mProject.name
-            projectDescriptionProjectActivity.text = mProject.description
-            projectGithubRepo.text = mProject.githubRepoUrl
+            projectDescriptionProjectActivity.text = "Description : ${mProject.description}"
+            projectGithubRepo.text = "Github : ${mProject.githubRepoUrl}"
         }
     }
 }

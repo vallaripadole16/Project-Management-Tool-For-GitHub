@@ -11,6 +11,10 @@
     <color name="skyBlue">#03A9F4</color>
     <color name="skyBlueDark">#0288D1</color>
     <color name="skyBlueDarker">#01579B</color>
+    <color name="green">#4CAF50</color>
+
+    <color name="darkBlue" >#144BF4</color>
+    <color name="orange" >#FF5722</color>
 
 
 </resources>
