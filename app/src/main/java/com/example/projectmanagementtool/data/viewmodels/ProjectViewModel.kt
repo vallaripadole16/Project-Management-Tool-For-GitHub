@@ -32,4 +32,5 @@ class ProjectViewModel : ViewModel() {
         logList.add(log)
         fireStoreRepository.addLogToProject(project.joinId, logList)
     }
+
 }

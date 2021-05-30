@@ -62,6 +62,7 @@ class HomeFragment : Fragment() {
         mainViewModel.currentUser().observe(this, Observer { user ->
             mUser = user
             mUserID = user.id
+            Log.d("debug",mUser.toString())
         })
 
         return mView

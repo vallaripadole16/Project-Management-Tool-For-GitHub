@@ -8,7 +8,7 @@
     android:paddingHorizontal="20dp"
     android:elevation="6dp"
     android:minWidth="200dp"
-    app:cardCornerRadius="20dp"
+    app:cardCornerRadius="10dp"
     android:layout_marginHorizontal="6dp"
     android:layout_marginVertical="5dp"
     android:layout_height="wrap_content">
@@ -16,8 +16,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:minWidth="200dp"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:minWidth="200dp">
 
         <ImageView
             android:id="@+id/logCreatorAvatar"
@@ -35,10 +35,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="6dp"
-            android:textSize="16sp"
-            android:padding="10dp"
-            android:textColor="@color/skyBlue"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
             android:text="Creator Name"
+            android:textColor="@color/skyBlue"
+            android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@id/logCreatorAvatar"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,8 +51,8 @@
             android:layout_marginTop="6dp"
             android:layout_marginEnd="6dp"
             android:text="Time"
-            android:textSize="12sp"
             android:textColor="@color/black"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,14 +63,61 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="6dp"
+            android:layout_marginEnd="6dp"
+            android:maxLines="3"
+            android:paddingHorizontal="6dp"
+            android:text="Log Description"
             android:textColor="@color/black"
             android:textSize="12sp"
-            android:padding="10dp"
-            android:text="Log Description"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/logCreatorAvatar"
-            app:layout_constraintTop_toBottomOf="@id/creatorNameLogCard"/>
+            app:layout_constraintTop_toBottomOf="@id/creatorNameLogCard" />
 
+        <TextView
+            android:id="@+id/logCommandLogCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="6dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:text="Log Command"
+            android:textColor="@color/green"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@id/logCreatorAvatar"
+            app:layout_constraintTop_toBottomOf="@id/logDescriptionLogCard" />
 
+        <TextView
+            android:id="@+id/tvProgressIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100"
+            android:paddingHorizontal="8dp"
+            android:textColor="@color/orange"
+            app:layout_constraintBottom_toTopOf="@id/projectProgress"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            />
+        <ProgressBar
+            android:id="@+id/projectProgress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:outlineAmbientShadowColor="@color/orange"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            app:layout_constraintTop_toBottomOf="@id/logCommandLogCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/logDataImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/projectProgress"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

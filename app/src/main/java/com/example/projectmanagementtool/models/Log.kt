@@ -8,14 +8,18 @@ class Log(
     val description: String = "",
     val createdBy: String = "",
     val createdAt: String = "",
-    val image: String = ""
+    val image: String = "",
+    val data:String ="",
+    val projectProgress:Int = 0
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.readString()!!
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readInt()!!
     ) {
     }
 
@@ -25,6 +29,8 @@ class Log(
         parcel.writeString(createdBy)
         parcel.writeString(createdAt)
         parcel.writeString(image)
+        parcel.writeString(data)
+        parcel.writeInt(projectProgress)
     }
 
     override fun describeContents(): Int {

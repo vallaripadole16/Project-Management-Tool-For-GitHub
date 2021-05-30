@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -45,6 +46,14 @@ open class LogItemAdapter(private val context: Context):
                 creatorNameLogCard.text = model.createdBy
                 logTimeStamp.text = model.createdAt
                 logDescriptionLogCard.text = model.description
+                logCommandLogCard.text = model.name
+                projectProgress.progress = model.projectProgress
+                tvProgressIndicator.text = "${model.projectProgress} %"
+
+                if(model.data != ""){
+                    logDataImageView.visibility = View.VISIBLE
+                    logDataImageView.load(model.data)
+                }
             }
 
 
