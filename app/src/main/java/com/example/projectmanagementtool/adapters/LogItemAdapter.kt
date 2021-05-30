@@ -49,6 +49,11 @@ open class LogItemAdapter(private val context: Context):
                 logCommandLogCard.text = model.name
                 projectProgress.progress = model.projectProgress
                 tvProgressIndicator.text = "${model.projectProgress} %"
+
+                if(model.data != ""){
+                    logDataImageView.visibility = View.VISIBLE
+                    logDataImageView.load(model.data)
+                }
             }
 
 

@@ -9,9 +9,11 @@ class Log(
     val createdBy: String = "",
     val createdAt: String = "",
     val image: String = "",
+    val data:String ="",
     val projectProgress:Int = 0
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
@@ -27,6 +29,7 @@ class Log(
         parcel.writeString(createdBy)
         parcel.writeString(createdAt)
         parcel.writeString(image)
+        parcel.writeString(data)
         parcel.writeInt(projectProgress)
     }
 
