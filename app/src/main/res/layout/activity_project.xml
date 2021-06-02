@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/header_background_project_activity"
+    android:background="@color/charcoal"
     app:layoutDescription="@xml/activity_project_scene"
     tools:context=".activities.ProjectActivity">
 
@@ -60,7 +60,7 @@
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/background_bottom_container_project_activity"
+        android:background="@color/charcoal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -71,21 +71,20 @@
         <Button
             android:id="@+id/btnNewChanges"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="42dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="12dp"
-            android:background="@drawable/custom_button_rounded_white"
+            android:background="@color/honeyyellow"
             android:fontFamily="@font/asul_bold"
             android:paddingHorizontal="10dp"
-            android:text="New Changes +"
-            android:textColor="@color/skyBlue"
+            android:text="New Changes+"
+            android:textColor="@color/charcoal"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
         <androidx.recyclerview.widget.RecyclerView
-
             android:id="@+id/rvLogList"
             android:layout_width="0dp"
             android:layout_height="0dp"

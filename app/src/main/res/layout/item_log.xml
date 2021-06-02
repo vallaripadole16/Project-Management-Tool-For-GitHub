@@ -17,7 +17,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:minWidth="200dp">
+        android:minWidth="200dp"
+        android:background="@color/white">
 
         <ImageView
             android:id="@+id/logCreatorAvatar"
@@ -38,7 +39,8 @@
             android:paddingHorizontal="10dp"
             android:paddingVertical="4dp"
             android:text="Creator Name"
-            android:textColor="@color/skyBlue"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@id/logCreatorAvatar"
             app:layout_constraintTop_toTopOf="parent" />
@@ -65,8 +67,9 @@
             android:layout_marginTop="6dp"
             android:layout_marginEnd="6dp"
             android:maxLines="3"
-            android:paddingHorizontal="6dp"
+            android:paddingHorizontal="10dp"
             android:text="Log Description"
+            android:fontFamily="@font/poppins"
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +85,7 @@
             android:paddingHorizontal="10dp"
             android:paddingVertical="4dp"
             android:text="Log Command"
-            android:textColor="@color/green"
+            android:textColor="@color/honeyyellow"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@id/logCreatorAvatar"
             app:layout_constraintTop_toBottomOf="@id/logDescriptionLogCard" />
@@ -93,7 +96,7 @@
             android:layout_height="wrap_content"
             android:text="100"
             android:paddingHorizontal="8dp"
-            android:textColor="@color/orange"
+            android:textColor="@color/red"
             app:layout_constraintBottom_toTopOf="@id/projectProgress"
             app:layout_constraintEnd_toEndOf="parent"
 
@@ -102,7 +105,7 @@
             android:id="@+id/projectProgress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:outlineAmbientShadowColor="@color/orange"
+            android:outlineAmbientShadowColor="@color/red"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             app:layout_constraintTop_toBottomOf="@id/logCommandLogCard"
             app:layout_constraintEnd_toEndOf="parent"

@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:id="@+id/cvProject"
     android:padding="8dp"
-    tools:cardBackgroundColor="@color/skyBlue"
+    tools:cardBackgroundColor="@color/charcoal"
     android:elevation="6dp"
     android:minWidth="200dp"
     android:layout_marginHorizontal="6dp"
@@ -38,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:padding="5dp"
+            android:fontFamily="@font/poppins"
             android:text="Project Description"
             android:textColor="@color/white"
             android:maxWidth="220dp"
@@ -53,8 +54,9 @@
             android:layout_marginEnd="4dp"
             android:padding="5dp"
             android:text="Project Id"
+            android:fontFamily="@font/poppins"
             android:textColor="@color/white"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_constraintStart_toStartOf="@id/tvProjectDescription"
             app:layout_constraintTop_toBottomOf="@id/tvProjectDescription" />
 
