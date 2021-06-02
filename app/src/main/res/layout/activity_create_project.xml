@@ -10,11 +10,10 @@
         android:id="@+id/tvProjectNameCreateProject"
         android:layout_width="0dp"
         android:text="Project Name"
-        android:textColor="@color/black"
+        android:textColor="@color/charcoal"
         android:textSize="16dp"
         android:layout_margin="6dp"
         android:fontFamily="@font/poppins"
-
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,7 +28,6 @@
         android:background="@drawable/custom_edittext"
         android:hint="Project Name"
         android:fontFamily="@font/poppins"
-
         android:padding="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -57,7 +55,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:fontFamily="@font/poppins"
-
         android:background="@drawable/custom_edittext"
         android:hint="Project Description"
         android:padding="6dp"

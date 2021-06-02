@@ -2,18 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="350dp"
     android:layout_height="wrap_content"
+    android:fontFamily="@font/poppins"
     android:padding="4dp">
 
     <TextView
         android:id="@+id/dialogName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/asul_bold"
+        android:fontFamily="@font/poppins"
         android:gravity="center"
         android:text="Create Change Log"
-        android:textColor="@color/skyBlue"
+        android:textColor="@color/honeyyellow"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -22,16 +23,16 @@
         tools:layout_editor_absoluteY="6dp" />
 
 
-
     <TextView
         android:id="@+id/tvLogDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins"
         android:padding="6dp"
-        android:text="Comment"
+        android:text="Comment: "
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toBottomOf="@id/dialogName" />
 
     <EditText
@@ -64,12 +65,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
+            android:fontFamily="@font/poppins"
             android:text="Push" />
         <RadioButton
             android:id="@+id/radio_merge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
+            android:fontFamily="@font/poppins"
             android:text="Merge" />
 
         <RadioButton
@@ -77,12 +80,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
+            android:fontFamily="@font/poppins"
             android:text="Commit" />
         <RadioButton
             android:id="@+id/radio_none"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonClicked"
+            android:fontFamily="@font/poppins"
             android:text="None" />
     </RadioGroup>
 
@@ -91,29 +96,37 @@
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintEnd_toStartOf="@id/btnChooseImage"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroupCommands" />
+
 
     <Button
         android:id="@+id/btnChooseImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose Images"
+        android:paddingHorizontal="4dp"
+        android:layout_marginEnd="18dp"
+        android:background="@color/honeyyellow"
+        android:text="Choose Image"
+        android:fontFamily="@font/poppins"
+        app:layout_constraintBottom_toBottomOf="@id/imageView"
         app:layout_constraintEnd_toEndOf="@id/radioGroupCommands"
         app:layout_constraintTop_toTopOf="@id/imageView"
-        app:layout_constraintBottom_toBottomOf="@id/imageView"/>
-
+        app:layout_constraintVertical_bias="0.5" />
 
     <Button
         android:id="@+id/btnMakeChanges"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/honeyyellow"
         android:text="Make Changes"
+        android:fontFamily="@font/poppins"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".activities.JoinProjectActivity">
 
 
@@ -17,6 +18,7 @@
         android:layout_margin="6dp"
         android:textColor="@color/black"
         android:text="Enter Project Code"
+        android:fontFamily="@font/poppins"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -27,9 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:background="@drawable/custom_edittext"
-        android:fontFamily="@font/poppins"
         android:hint="Project Code"
-
+        android:fontFamily="@font/poppins"
         android:padding="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -47,6 +48,7 @@
         android:layout_margin="6dp"
         android:textColor="@color/red"
         android:text="Warning"
+        android:fontFamily="@font/poppins"
         android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/etProjectJoinCode"
         app:layout_constraintHorizontal_bias="0.5"
@@ -57,8 +59,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@drawable/custom_button"
         android:text="Join Project"
+        android:background="@color/charcoal"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:fontFamily="@font/poppins"

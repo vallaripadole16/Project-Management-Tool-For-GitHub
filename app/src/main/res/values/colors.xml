@@ -6,13 +6,15 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="charcoal">#344955</color>
+    <color name="LightCharcoal">#435763</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
     <color name="skyBlue">#03A9F4</color>
     <color name="skyBlueDark">#0288D1</color>
     <color name="skyBlueDarker">#01579B</color>
     <color name="green">#4CAF50</color>
-
+    <color name="honeyyellow">#F9AA33</color>
     <color name="darkBlue" >#144BF4</color>
     <color name="orange" >#FF5722</color>
 
