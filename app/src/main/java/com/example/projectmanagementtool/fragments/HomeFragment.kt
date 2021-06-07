@@ -1,17 +1,20 @@
 package com.example.projectmanagementtool.fragments
 
 import android.app.Activity
+import android.app.ActivityManager
+import android.content.Context.ACTIVITY_SERVICE
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.projectmanagementtool.BackgroundServiceClass
 import com.example.projectmanagementtool.R
 import com.example.projectmanagementtool.activities.HomeActivity
 import com.example.projectmanagementtool.activities.ProjectActivity
@@ -21,7 +24,6 @@ import com.example.projectmanagementtool.firebase.FirestoreClass
 import com.example.projectmanagementtool.models.Project
 import com.example.projectmanagementtool.models.User
 import com.example.projectmanagementtool.utils.Constants
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 
@@ -62,11 +64,12 @@ class HomeFragment : Fragment() {
         mainViewModel.currentUser().observe(this, Observer { user ->
             mUser = user
             mUserID = user.id
-            Log.d("debug",mUser.toString())
+            Log.d("debug", mUser.toString())
         })
 
         return mView
     }
+
 
     fun populateProjectListToUI() {
         if (this::mProjectList.isInitialized) {
@@ -76,6 +79,22 @@ class HomeFragment : Fragment() {
                     mView.rvProjectList.layoutManager =
                         LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
                     mView.rvProjectList.setHasFixedSize(true)
+                    Log.d(
+                        "debugr",
+                        isBackgroundServiceRunning(BackgroundServiceClass::class.java).toString()
+                    )
+                    if (!isBackgroundServiceRunning(BackgroundServiceClass::class.java)) {
+                        if (mProjectList.isNotEmpty()) {
+                            Intent(
+                                this.activity,
+                                BackgroundServiceClass::class.java
+                            ).also { intent ->
+                                intent.putExtra(Constants.USER_ID, mUserID)
+                                this.activity?.startService(intent)
+                            }
+                        }
+                    }
+
                     val adapter = ProjectItemAdapter(activity as HomeActivity, mProjectList)
                     view.rvProjectList.adapter = adapter
                     adapter.setOnClickListener(object : ProjectItemAdapter.OnClickListener {
@@ -98,6 +117,17 @@ class HomeFragment : Fragment() {
             }
         }
 
+    }
+
+    private fun isBackgroundServiceRunning(service: Class<*>): Boolean {
+        val manager =
+            context?.getSystemService(ACTIVITY_SERVICE) as ActivityManager
+        if (manager != null) {
+            for (info in manager.getRunningServices(Int.MAX_VALUE)) {
+                if (service.name == info.service.className) return true
+            }
+        }
+        return false
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

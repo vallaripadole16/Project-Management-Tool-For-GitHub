@@ -2,12 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="350dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fontFamily="@font/poppins"
-    android:padding="4dp">
+    android:padding="4dp"
+    app:layout_constraintWidth_percent="1.0">
 
     <TextView
+        android:layout_marginHorizontal="40dp"
         android:id="@+id/dialogName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,53 +48,25 @@
         app:layout_constraintStart_toEndOf="@id/tvLogDescription"
         app:layout_constraintTop_toTopOf="@id/tvLogDescription" />
 
-    <RadioGroup
-        android:id="@+id/radioGroupCommands"
-        android:layout_width="match_parent"
+    <Spinner
+        android:id="@+id/spinner"
+        app:layout_constraintWidth_percent="1.0"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/tvLogDescription"
-        android:orientation="horizontal"
-        android:layout_marginVertical="4dp"
-        android:paddingVertical="4dp"
+        android:layout_margin="4dp"
+        android:background="@drawable/spinner_border"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"
+        android:popupBackground="@color/charcoal"
+        app:layout_constraintTop_toBottomOf="@id/etLogDescriptionCreateLog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="4dp">
+        tools:layout_editor_absoluteY="4dp" />
 
-        <RadioButton
-            android:id="@+id/radio_push"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:fontFamily="@font/poppins"
-            android:text="Push" />
-        <RadioButton
-            android:id="@+id/radio_merge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:fontFamily="@font/poppins"
-            android:text="Merge" />
-
-        <RadioButton
-            android:id="@+id/radio_commit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:fontFamily="@font/poppins"
-            android:text="Commit" />
-        <RadioButton
-            android:id="@+id/radio_none"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:fontFamily="@font/poppins"
-            android:text="None" />
-    </RadioGroup>
 
     <ImageView
-        android:id="@id/imageView"
+        android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginStart="12dp"
@@ -101,20 +75,20 @@
         app:layout_constraintEnd_toStartOf="@id/btnChooseImage"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroupCommands" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
 
     <Button
         android:id="@+id/btnChooseImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="4dp"
         android:layout_marginEnd="18dp"
         android:background="@color/honeyyellow"
-        android:text="Choose Image"
         android:fontFamily="@font/poppins"
+        android:paddingHorizontal="4dp"
+        android:text="Choose Image"
         app:layout_constraintBottom_toBottomOf="@id/imageView"
-        app:layout_constraintEnd_toEndOf="@id/radioGroupCommands"
+        app:layout_constraintEnd_toEndOf="@id/spinner"
         app:layout_constraintTop_toTopOf="@id/imageView"
         app:layout_constraintVertical_bias="0.5" />
 
@@ -124,11 +98,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@color/honeyyellow"
-        android:text="Make Changes"
         android:fontFamily="@font/poppins"
+        android:text="Make Changes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@id/imageView" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

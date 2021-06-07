@@ -23,6 +23,7 @@ object Constants {
     const val CLASSROOMS = "classrooms"
 
     const val USER = "user"
+    const val USER_ID = "userId"
 
     const val PROJECTS = "projects"
     const val USERS: String = "users"
@@ -38,25 +39,14 @@ object Constants {
     const val STARTED_FLAG = "Started"
     const val FINISHED_FLAG = "Finished"
     const val CANCELED_FLAG = "Canceled"
-    val WEEK_DAYS_ARRAY_LIST = ArrayList<String>(
+    val COMMANDS_ARRAY = ArrayList<String>(
         arrayListOf(
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday"
-        )
-    )
-    val CURRENT_DAYS_ARRAY_LIST = ArrayList<String>(
-        arrayListOf(
-            "Saturday",
-            "Sunday",
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday"
+            "None",
+            "MERGE",
+            "COMMIT",
+            "PUSH",
+            "PULL",
+            "NEW BRANCH"
         )
     )
 
