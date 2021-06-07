@@ -8,6 +8,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.example.projectmanagementtool.BackgroundServiceClass
 import com.example.projectmanagementtool.R
 import com.example.projectmanagementtool.data.viewmodels.CreateProjectViewModel
 import com.example.projectmanagementtool.models.Project
@@ -18,7 +19,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class CreateProjectActivity : AppCompatActivity() {
-    private lateinit var mUserId :String
+    private lateinit var mUserId: String
 
     private lateinit var mProject: Project
     private lateinit var createProjectViewModel: CreateProjectViewModel
@@ -29,7 +30,10 @@ class CreateProjectActivity : AppCompatActivity() {
         if (intent.hasExtra(Constants.ID)) {
             mUserId = intent.getStringExtra(Constants.ID)!!
         }
-        createProjectViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(application)).get(CreateProjectViewModel::class.java)
+        createProjectViewModel =
+            ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(application)).get(
+                CreateProjectViewModel::class.java
+            )
         createProjectViewModel.mClassroom.observe(this, androidx.lifecycle.Observer { project ->
             mProject = project
             projectCreatedSuccessful(project.joinId)
@@ -41,7 +45,11 @@ class CreateProjectActivity : AppCompatActivity() {
                 createProject()
             } else {
                 getCurrentTime()
-                Toast.makeText(this, "please insert project name and github url", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    "please insert project name and github url",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
@@ -58,15 +66,15 @@ class CreateProjectActivity : AppCompatActivity() {
             members = memberArrayList,
             joinId = RandomString(length = 6).nextString()
         )
-        if(this::createProjectViewModel.isInitialized){
+        if (this::createProjectViewModel.isInitialized) {
             createProjectViewModel.createProject(project)
         }
     }
 
-    private fun getCurrentTime() :String {
+    private fun getCurrentTime(): String {
         val sdf = SimpleDateFormat("dd/M/yyyy")
         val currentDate = sdf.format(Date())
-        Log.i("debug",currentDate)
+        Log.i("debug", currentDate)
         return currentDate
     }
 
@@ -81,8 +89,9 @@ class CreateProjectActivity : AppCompatActivity() {
         return result
     }
 
-    private fun projectCreatedSuccessful(joinId:String) {
-        Log.i("debug","shaikh")
+    private fun projectCreatedSuccessful(joinId: String) {
+        Log.i("debug", "shaikh")
+        stopService(Intent(this, BackgroundServiceClass::class.java))
         setResult(Activity.RESULT_OK)
         finish()
     }

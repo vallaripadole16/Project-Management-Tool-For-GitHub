@@ -1,6 +1,7 @@
 package com.example.projectmanagementtool.activities
 
 import android.Manifest
+import android.app.ActionBar
 import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
@@ -13,6 +14,8 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.view.Window
+import android.view.WindowManager
+import android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN
 import android.webkit.MimeTypeMap
 import android.widget.*
 import androidx.core.app.ActivityCompat
@@ -42,6 +45,7 @@ import kotlinx.coroutines.launch
 import java.io.IOException
 import java.lang.Exception
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ProjectActivity : AppCompatActivity() {
 
@@ -93,6 +97,32 @@ class ProjectActivity : AppCompatActivity() {
                 mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
                 mDialog.setContentView(R.layout.create_log_dialog)
                 mDialog.show()
+
+                val spinner: Spinner = mDialog.spinner
+                ArrayAdapter.createFromResource(
+                    this,
+                    R.array.commands_array,
+                    R.layout.spinner_item
+                ).also { adapter ->
+                    adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
+                    spinner.adapter = adapter
+                }
+                spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onNothingSelected(parent: AdapterView<*>?) {
+                        mCommand= "None"
+                    }
+
+                    override fun onItemSelected(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        mCommand = Constants.COMMANDS_ARRAY[position]
+                        Toast.makeText(this@ProjectActivity, "${Constants.COMMANDS_ARRAY[position]}", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
 
                 mDialog.btnMakeChanges.setOnClickListener {
                     if (validateEditText(mDialog.etLogDescriptionCreateLog)) {
@@ -169,7 +199,7 @@ class ProjectActivity : AppCompatActivity() {
         ) {
             mSelectedImageFileUri = data.data
             try {
-                mDialog.imageView.load(mSelectedImageFileUri){
+                mDialog.imageView.load(mSelectedImageFileUri) {
                     crossfade(1000)
                 }
             } catch (e: Exception) {
@@ -208,6 +238,8 @@ class ProjectActivity : AppCompatActivity() {
                 .addOnFailureListener {
                     Toast.makeText(this, "oops something goes wrong", Toast.LENGTH_SHORT).show()
                 }
+        }else{
+            Toast.makeText(this,"please select media",Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -251,32 +283,7 @@ class ProjectActivity : AppCompatActivity() {
         })
     }
 
-    fun onRadioButtonClicked(view: View) {
-        if (view is RadioButton) {
-            // Is the button now checked?
-            val checked = view.isChecked
 
-            // Check which radio button was clicked
-            when (view.getId()) {
-                R.id.radio_merge ->
-                    if (checked) {
-                        mCommand = "Merge"
-                        // Merge
-                    }
-                R.id.radio_commit ->
-                    if (checked) {
-                        mCommand = "Commit"
-                        // Commit
-                    }
-                R.id.radio_push ->
-                    if (checked) {
-                        mCommand = "Push"
-                        // Push
-                    }
-
-            }
-        }
-    }
 
 
     private fun fillDetails() {
@@ -287,9 +294,4 @@ class ProjectActivity : AppCompatActivity() {
         }
     }
 
-    // vallari's methods
-
-    // All deprecated code removed successfully
-
-    // END
 }
