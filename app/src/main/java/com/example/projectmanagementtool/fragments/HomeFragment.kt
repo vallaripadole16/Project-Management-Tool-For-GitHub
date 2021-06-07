@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -19,9 +20,11 @@ import com.example.projectmanagementtool.R
 import com.example.projectmanagementtool.activities.HomeActivity
 import com.example.projectmanagementtool.activities.ProjectActivity
 import com.example.projectmanagementtool.adapters.ProjectItemAdapter
+import com.example.projectmanagementtool.adapters.TaskAdapter
 import com.example.projectmanagementtool.data.viewmodels.MainViewModel
 import com.example.projectmanagementtool.firebase.FirestoreClass
 import com.example.projectmanagementtool.models.Project
+import com.example.projectmanagementtool.models.Task
 import com.example.projectmanagementtool.models.User
 import com.example.projectmanagementtool.utils.Constants
 import kotlinx.android.synthetic.main.fragment_home.view.*
@@ -46,6 +49,8 @@ class HomeFragment : Fragment() {
     ): View? {
         mView = inflater.inflate(R.layout.fragment_home, container, false)
 
+        setUpTasks()
+
         mView.btnOpenBottomModalSheet.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_bottomModalSheet)
         }
@@ -68,6 +73,30 @@ class HomeFragment : Fragment() {
         })
 
         return mView
+    }
+
+    private fun setUpTasks() {
+        val tasks = ArrayList<Task>()
+        var task = Task("Login Feature",taskDescription = "create sigIn and signUp functionality using firebase Auth service")
+        tasks.add(task)
+        task = Task("Profile Feature",taskDescription = "create my profile activity UI design containing user Avatar")
+        tasks.add(task)
+        task = Task("Database Integration",taskDescription = "create node js server in order to pull and push data to mongoDb database ")
+        tasks.add(task)
+        mView.rvTaskList.visibility = View.VISIBLE
+        mView.rvTaskList.layoutManager =
+            LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        mView.rvTaskList.setHasFixedSize(true)
+        val adapter = TaskAdapter(activity as HomeActivity, tasks)
+        mView.rvTaskList.adapter = adapter
+        Log.d("debug", "$adapter")
+        adapter.setOnClickListener(object : TaskAdapter.OnClickListener {
+            override fun onClick(position: Int, model: Task) {
+                Toast.makeText(activity as HomeActivity, "work in progress", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+
     }
 
 
