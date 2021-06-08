@@ -13,15 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectManagementTool">
         <activity android:name=".activities.JoinProjectActivity"></activity>
-        <activity android:name=".activities.ProjectActivity"
+        <activity
+            android:name=".activities.ProjectActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"/>
+            android:theme="@style/NoActionBar" />
         <activity android:name=".activities.CreateProjectActivity" />
-        <activity android:name=".activities.MyProfileActivity" />
+        <activity
+            android:name=".activities.MyProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar" />
         <activity
             android:name=".activities.GalleryActivity"
-            android:label="@string/hello_blank_fragment">
-        </activity>
+            android:label="@string/hello_blank_fragment"></activity>
         <activity
             android:name=".activities.HomeActivity"
             android:screenOrientation="portrait"
@@ -36,9 +39,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service
-            android:enabled="true"
-            android:name=".BackgroundServiceClass"/>
+            android:name=".BackgroundServiceClass"
+            android:enabled="true" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
