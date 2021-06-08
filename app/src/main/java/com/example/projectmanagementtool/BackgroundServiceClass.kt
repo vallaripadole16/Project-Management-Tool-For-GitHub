@@ -11,7 +11,8 @@ import com.example.projectmanagementtool.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-
+import java.util.*
+import kotlin.collections.HashMap
 
 
 class BackgroundServiceClass : Service() {
@@ -22,7 +23,7 @@ class BackgroundServiceClass : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         android.util.Log.d("debug", "service is started")
         mUserId = FirebaseAuth.getInstance().currentUser!!.uid
-        if(mUserId == null){
+        if (mUserId == null) {
             return START_STICKY
         }
         android.util.Log.d("debugs", "user $mUserId")
@@ -51,8 +52,9 @@ class BackgroundServiceClass : Service() {
     }
 
 
+
     private fun createNotification(value: DocumentSnapshot?) {
-        android.util.Log.d("debuge","changed")
+        android.util.Log.d("debuge", "changed")
         if (value != null) {
             val project = value.toObject(Project::class.java)
             if (project != null) {
@@ -63,13 +65,14 @@ class BackgroundServiceClass : Service() {
                     if (oldLogs != null) {
                         val newLog = newLogChecker(oldLogs, project.logList)
                         if (newLog != null) {
-                            var builder = NotificationCompat.Builder(this, CHANNEL_ID)
+                            var builder = NotificationCompat.Builder(this, "My_Channel")
                                 .setSmallIcon(R.drawable.ic_add)
                                 .setContentTitle("New Log")
                                 .setContentText("${newLog.createdBy} Made ${newLog.name}")
                                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                             with(NotificationManagerCompat.from(this)) {
-                                notify(106, builder.build())
+                                val notificationId = Random().nextInt(9999-1000) +1000;
+                                notify(notificationId, builder.build())
                             }
                             android.util.Log.d("debugs", value.id)
                         }
