@@ -14,7 +14,8 @@ class Project(
     val githubRepoUrl: String = "",
     val createdAt: String = "",
     val members: ArrayList<String> = ArrayList(),
-    var logList :ArrayList<Log> = ArrayList()
+    var logList :ArrayList<Log> = ArrayList(),
+    var moduleList:ArrayList<String> = ArrayList()
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
@@ -27,7 +28,8 @@ class Project(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.createStringArrayList()!!,
-        parcel.createTypedArrayList(Log.CREATOR)!!
+        parcel.createTypedArrayList(Log.CREATOR)!!,
+        parcel.createStringArrayList()!!
     ) {
     }
 
@@ -43,6 +45,7 @@ class Project(
         parcel.writeString(createdAt)
         parcel.writeStringList(members)
         parcel.writeTypedList(logList)
+        parcel.writeStringList(moduleList)
     }
 
     override fun describeContents(): Int {

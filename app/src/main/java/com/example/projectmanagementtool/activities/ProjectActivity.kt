@@ -90,6 +90,14 @@ class ProjectActivity : AppCompatActivity() {
         subscribeToObservers()
         projectViewModel.projectDetails(mProjectDocumentId)
 
+        btnCreateReport.setOnClickListener {
+            if(::mProject.isInitialized){
+                val reportIntent = Intent(this,ReportActivity::class.java)
+                reportIntent.putExtra(Constants.PROJECT,mProject)
+                startActivity(reportIntent)
+            }
+        }
+
 
         btnNewChanges.setOnClickListener {
             if (::mProject.isInitialized) {

@@ -22,6 +22,8 @@ object Constants {
     const val MEMBERS = "members"
     const val CLASSROOMS = "classrooms"
 
+    const val PROJECT = "project"
+
     const val USER = "user"
     const val USER_ID = "userId"
 
