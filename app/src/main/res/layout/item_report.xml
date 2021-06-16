@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/cvTask"
+    android:paddingVertical="6dp"
+    android:paddingHorizontal="10dp"
+    android:elevation="6dp"
+    android:minWidth="200dp"
+    app:cardCornerRadius="10dp"
+    android:layout_marginHorizontal="6dp"
+    android:layout_marginVertical="5dp"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tvMemberName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="Member Name"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/charcoal"
+            android:textSize="16sp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvReportInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="Info"
+            android:textColor="@color/charcoal"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/tvMemberName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/tvCompletionDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="Created At"
+            app:layout_constraintTop_toBottomOf="@id/tvReportInfo"
+            android:textColor="@color/charcoal"
+            android:textSize="16sp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

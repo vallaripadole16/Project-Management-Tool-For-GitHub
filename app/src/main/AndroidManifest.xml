@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +13,9 @@
         android:roundIcon="@drawable/ic_share"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectManagementTool">
-        <activity android:name=".activities.JoinProjectActivity"></activity>
+        <activity android:name=".activities.ReportActivity"
+            android:theme="@style/NoActionBar"></activity>
+        <activity android:name=".activities.JoinProjectActivity" />
         <activity
             android:name=".activities.ProjectActivity"
             android:screenOrientation="portrait"
@@ -24,7 +27,7 @@
             android:theme="@style/NoActionBar" />
         <activity
             android:name=".activities.GalleryActivity"
-            android:label="@string/hello_blank_fragment"></activity>
+            android:label="@string/hello_blank_fragment" />
         <activity
             android:name=".activities.HomeActivity"
             android:screenOrientation="portrait"
@@ -43,6 +46,7 @@
         <service
             android:name=".BackgroundServiceClass"
             android:enabled="true" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
